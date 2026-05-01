@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+@theme {
+  --font-sans: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --color-primary-50: #fdf5f3;
+  --color-primary-100: #fce7e2;
+  --color-primary-500: #e06a53;
+  --color-primary-600: #cb533d;
+  --color-primary-700: #a9412f;
+  --color-dark-bg: #121212;
+  --color-dark-surface: #1e1e1e;
+  --color-dark-border: #2a2a2a;
+  --color-glass-light: rgba(253, 245, 243, 0.7);
+  --color-glass-dark: rgba(30, 30, 30, 0.7);
+}
+
+@layer base {
+  body {
+    @apply bg-[#f9f8f6] text-slate-900 font-sans antialiased transition-colors duration-500;
+  }
+  
+  .dark body {
+    @apply bg-dark-bg text-slate-100;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-[#f9f8f6]/70 dark:bg-dark-surface/70 backdrop-blur-md border border-black/5 dark:border-white/5 shadow-sm;
+  }
+  
+  .glass-card {
+    @apply bg-white dark:bg-[#1a1a1a] border border-black/5 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] rounded-[24px];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-amber-600;
+  }
+
+  .hover-scale {
+    @apply transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:scale-[1.01] hover:-translate-y-1 active:scale-[0.98];
+  }
+
+  .grain-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-500;
+}
+
+/* Base animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
