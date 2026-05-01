@@ -1,12 +1,16 @@
 {
   "name": "ethara-full-stack",
   "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
-    "postinstall": "npm install --prefix server && npm install --prefix client",
-    "build": "npm run build --prefix client",
-    "start": "npm start --prefix server"
+    "build": "npm run build --workspace=client",
+    "start": "npm start --workspace=server"
   }
 }
